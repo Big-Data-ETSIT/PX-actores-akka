@@ -1,8 +1,10 @@
 <img  align="left" width="150" style="float: left;" src="https://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Logos/UPM/CEI/LOGOTIPO%20leyenda%20color%20JPG%20p.png">
 <img  align="right" width="60" style="float: right;" src="https://www.dit.upm.es/images/dit08.gif">
-# Práctica Actores Akka
+
 
 <br/><br/>
+# Práctica Actores Akka
+
 ## 1. Objetivo:
 - Comprender los conceptos básicos de actores y su implementación en Scala utilizando Akka.
 

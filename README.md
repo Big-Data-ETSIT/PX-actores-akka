@@ -17,7 +17,7 @@ Para realizar la práctica el alumno deberá tener instalado en su ordenador:
 - Máquina virtual con sistema operativo linux y distribución Ubuntu 22.04 (Disponible en el enlace compartido en moodle) 
 
 
-### Parte 1: Introducción a Actores con Akka en Scala 
+## 3. Parte 1: Introducción a Actores con Akka en Scala 
 
 
 #### Instrucciones:
@@ -119,7 +119,7 @@ Para realizar la práctica el alumno deberá tener instalado en su ordenador:
 6. **Ejecución y Observación:**
    - Ejecuta tu programa y observa la salida para entender cómo los actores manejan los mensajes y sus ciclos de vida.
 
-### Parte 2: Desarrollo No Guiado 
+## 4. Parte 2: Desarrollo No Guiado 
 
 #### Objetivo:
 - Profundizar en el uso de actores con Akka mediante la implementación de un programa más complejo.
@@ -148,7 +148,7 @@ Crear tres actores para manejar una cuenta bancaria en Scala utilizando Akka. Ca
 4. Defina la clase `main` en donde se vea la interacción entre cada uno de los actores, por ejemplo que se realicen 5 depositos, dos retiros y que se intente realizar una operación no permitida.
 
 
-## 7. Instrucciones para la Entrega y Evaluación.
+## 5. Instrucciones para la Entrega y Evaluación.
 El alumno debe subir un fichero pdf a moodle en donde se incluyan el código realizado en la parte 2 y las capturas de la ejecución donde se muestren los mensajes recibidos por cada uno de los actores solicitados en los puntos 1 y 2 junto a una descripción de las mismas.
 
 

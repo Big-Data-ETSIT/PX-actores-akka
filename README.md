@@ -23,7 +23,22 @@ Para realizar la práctica el alumno deberá tener instalado en su ordenador:
 #### Instrucciones:
 
 1. **Configuración del Proyecto:**
-   - Crea un nuevo proyecto Scala en tu entorno de desarrollo preferido.
+   - Clonar el repositorio y accder al directorio del proyecto
+    ```
+     git clone https://github.com/Big-Data-ETSIT/PX-actores-akka.git
+     cd PX-actores-akka
+    ```
+   - Verificar el correcto funcionamiento de sbt, ejecutando el código escrito en el fichero AkkaLab
+    ```
+     cd akka-lab-scala
+     sbt 
+    ```
+    Una vez habilitado el prompt the sbt ejecutar la app usando el comando run
+     ```
+     sbt:akka-quickstart-scala> run
+    ```
+
+   - Modifique  el proyecto Scala en su entorno de desarrollo preferido.
    - Agrega la dependencia de Akka al archivo `build.sbt`:
 
      ```scala

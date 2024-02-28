@@ -12,7 +12,7 @@
 
 Para realizar la práctica el alumno deberá tener instalado en su ordenador:
 - Herramienta GIT para gestión de repositorios [Github](https://git-scm.com/downloads)
-- Scala 2.13.0 [scala](https://www.scala-lang.org/download/2.13.0.html)
+- Scala 2.13.12 [scala](https://www.scala-lang.org/download/2.13.0.html)
 - Scala-sbt [scala-sbt](https://www.scala-sbt.org/download/)
 - Máquina virtual con sistema operativo linux y distribución Ubuntu 22.04 (Disponible en el enlace compartido en moodle) 
 

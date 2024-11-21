@@ -94,23 +94,24 @@ Para realizar la práctica el alumno deberá tener instalado en su ordenador:
    - Modifica el `Main` para que `HelloActor` y `GreetResponder` se comuniquen entre sí.
 
    ```scala
-   import akka.actor._
-
-    object Main extends App {
-      val system = ActorSystem("NetworkSystem")
-
-      // Crear actores para la simulación de red
-      val nodeActor = system.actorOf(Props[NodeActor], name = "nodeActor")
-      val connectionActor = system.actorOf(Props[ConnectionActor], name = "connectionActor")
-      val networkManager = system.actorOf(Props[NetworkManager], name = "networkManager")
-
-      // Enviar mensajes para simular la interacción entre actores
-      nodeActor ! "EnviarDatos"
-      connectionActor ! "EstablecerConexion"
-      networkManager ! "GestionarRed"
-
-      system.terminate()
-    }
+   object Main extends App {
+     // Crear el sistema de actores
+     val system = ActorSystem("HelloSystem")
+   
+     // Crear el actor GreetResponder
+     val greetResponder = system.actorOf(Props[GreetResponder], name = "greetResponder")
+   
+     // Crear el actor HelloActor, pasándole el actor GreetResponder
+     val helloActor = system.actorOf(Props(new HelloActor(greetResponder)), name = "helloActor")
+   
+     // Enviar mensaje de saludo a HelloActor
+     helloActor ! "Saludo"
+     greetResponder ! "Saludo"
+   
+     // Terminar el sistema después de un tiempo para ver la salida
+     Thread.sleep(1000)
+     system.terminate()
+   }
 
    ```
 

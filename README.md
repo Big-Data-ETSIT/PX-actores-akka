@@ -90,12 +90,26 @@ Para realizar la práctica el alumno deberá tener instalado en su ordenador:
        }
      }
      ```
+   - Modifica el actor `HelloActor` para que interactue con `GreetResponder`
+```scala
+      class HelloActor(greetResponder: ActorRef) extends Actor {
+        def receive: Receive = {
+          case "Saludo" =>
+            println("HelloActor: ¡Hola!")
+            greetResponder ! "Saludo"
+          case _ =>
+            println("HelloActor: Mensaje desconocido")
+        }
+      }
+```
+
+
 
    - Modifica el `Main` para que `HelloActor` y `GreetResponder` se comuniquen entre sí.
 
    ```scala
    object Main extends App {
-     // Crear el sistema de actores
+  // Crear el sistema de actores
      val system = ActorSystem("HelloSystem")
    
      // Crear el actor GreetResponder
@@ -104,9 +118,9 @@ Para realizar la práctica el alumno deberá tener instalado en su ordenador:
      // Crear el actor HelloActor, pasándole el actor GreetResponder
      val helloActor = system.actorOf(Props(new HelloActor(greetResponder)), name = "helloActor")
    
-     // Enviar mensaje de saludo a HelloActor
+     // Enviar mensajes a HelloActor
      helloActor ! "Saludo"
-     greetResponder ! "Saludo"
+     helloActor ! "OtroMensaje"
    
      // Terminar el sistema después de un tiempo para ver la salida
      Thread.sleep(1000)
@@ -114,6 +128,12 @@ Para realizar la práctica el alumno deberá tener instalado en su ordenador:
    }
 
    ```
+La salida esperada de la ejecucion del programa es la siguiente:
+```
+HelloActor: ¡Hola!
+GreetResponder: ¡Hola desde el GreetResponder!
+HelloActor: Mensaje desconocido
+```
 
 
 5. **Manejo del Ciclo de Vida:**

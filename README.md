@@ -134,9 +134,62 @@ HelloActor: ¡Hola!
 GreetResponder: ¡Hola desde el GreetResponder!
 HelloActor: Mensaje desconocido
 ```
+5. **Uso de Sender**
+   - Comprende el uso del método sendeer para responder a los mensajes de un actor
+   - Modifica `HelloActor` para imprimir un mensaje de respuesta
+     ```scala
+     class HelloActor(greetResponder: ActorRef) extends Actor {
+        def receive: Receive = {
+          case "Saludo" =>
+            println("HelloActor: ¡Hola! Enviando saludo a GreetResponder...")
+            greetResponder ! "Saludo" // Enviamos el mensaje a GreetResponder
+          case "Respuesta" =>
+            println(s"HelloActor: ¡Recibí la respuesta de GreetResponder!")
+          case _ =>
+            println("HelloActor: Mensaje desconocido")
+        }
+      }
+     ```
+     - Modifica GreetResponder: Este actor responderá a los saludos que recibe de HelloActor. Aquí se utiliza sender() para enviar la respuesta de vuelta al actor que le envió el mensaje original.
+      ```scala
+      class GreetResponder extends Actor {
+        def receive: Receive = {
+          case "Saludo" =>
+            println("GreetResponder: ¡Hola desde el GreetResponder! Respondiendo a HelloActor...")
+            sender() ! "Respuesta" // Usamos sender() para enviar la respuesta de vuelta
+          case _ =>
+            println("GreetResponder: Mensaje desconocido")
+        }
+      }
+      ``` 
+    - Modificación del Main con sender
+      ```scala
+      object Main extends App {
+        // Crear el sistema de actores
+        val system = ActorSystem("HelloSystem")
+      
+        // Crear el actor GreetResponder
+        val greetResponder = system.actorOf(Props[GreetResponder], name = "greetResponder")
+      
+        // Crear el actor HelloActor, pasándole el actor GreetResponder
+        val helloActor = system.actorOf(Props(new HelloActor(greetResponder)), name = "helloActor")
+      
+        // Enviar mensaje de saludo a HelloActor
+        helloActor ! "Saludo"
+      
+        // Terminar el sistema después de un tiempo para ver la salida
+        Thread.sleep(1000)
+        system.terminate()
+      }
+      ```
+La salida esperada de la ejecucion del programa es la siguiente:
+```
+HelloActor: ¡Hola! Enviando saludo a GreetResponder...
+GreetResponder: ¡Hola desde el GreetResponder! Respondiendo a HelloActor...
+HelloActor: ¡Recibí la respuesta de GreetResponder!
+```
 
-
-5. **Manejo del Ciclo de Vida:**
+7. **Manejo del Ciclo de Vida:**
    - Comprende el ciclo de vida de un actor implementando métodos como `preStart` y `postStop`.
    - Modifica `HelloActor` para imprimir un mensaje cuando se inicia y se detiene.
 
@@ -152,7 +205,7 @@ HelloActor: Mensaje desconocido
      }
      ```
 
-6. **Ejecución y Observación:**
+8. **Ejecución y Observación:**
    - Ejecuta tu programa y observa la salida para entender cómo los actores manejan los mensajes y sus ciclos de vida.
 
 ## 4. Parte 2: Desarrollo No Guiado 
